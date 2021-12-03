@@ -1,0 +1,48 @@
+﻿@implements IAsyncDisposable
+@inject IJSRuntime JS
+
+<section class="video_container">
+    <video src="@(src ?? _videoPlaceHolder)" autoplay=@autoplay loop=@loop muted=@muted controls=@controls>
+        Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div>
+</section>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public string? src { get; set; }
+
+    [Parameter]
+    public bool autoplay { get; set; } = true;
+
+    [Parameter]
+    public bool loop { get; set; } = true;
+
+    [Parameter]
+    public bool muted { get; set; } = true;
+
+    [Parameter]
+    public bool controls { get; set; } = false;
+
+    private readonly string _videoPlaceHolder = "./_content/NativoPlus.BlazorRCL/hm-hero-desktop-non-retina.mp4";
+
+    private IJSObjectReference? _module;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _module = await JS.InvokeAsync<IJSObjectReference>("import", 
+                "./_content/NativoPlus.BlazorRCL/Nativo-Video.razor.js");
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (_module is not null)
+        {
+            await _module.DisposeAsync();
+        }
+    }
+}

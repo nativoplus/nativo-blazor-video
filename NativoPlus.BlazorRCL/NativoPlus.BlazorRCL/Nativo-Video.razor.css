@@ -1,0 +1,29 @@
+﻿/*
+    Isolated CSS styles for Nativo-Video component
+*/
+
+.video_container {
+    min-height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.video_container video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
