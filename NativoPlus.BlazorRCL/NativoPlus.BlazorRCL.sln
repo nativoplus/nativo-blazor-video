@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativoPlus.BlazorRCL", "NativoPlus.BlazorRCL\NativoPlus.BlazorRCL.csproj", "{99C1190C-AE14-4A0D-9CBD-A77E20CC6E2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NativoPlus.BlazorRCL", "NativoPlus.BlazorRCL\NativoPlus.BlazorRCL.csproj", "{99C1190C-AE14-4A0D-9CBD-A77E20CC6E2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativoPlus.BlazorApp", "NativoPlus.BlazorApp\NativoPlus.BlazorApp.csproj", "{16F2C9F0-EAFD-47CF-974E-636EF4F17AAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NativoPlus.BlazorApp", "NativoPlus.BlazorApp\NativoPlus.BlazorApp.csproj", "{16F2C9F0-EAFD-47CF-974E-636EF4F17AAD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

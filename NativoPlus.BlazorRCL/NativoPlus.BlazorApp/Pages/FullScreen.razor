@@ -1,0 +1,13 @@
+﻿@layout EmptyLayout
+@page "/full-screen"
+
+<PageTitle>Full Screen</PageTitle>
+
+<Nativo_Video src=@httpVideoSource fallbackImage=@localFallbackImage />
+
+<a href="/">Go Back</a>
+
+@code {
+    private readonly string httpVideoSource = "https://www.hellomonday.com/assets/video/animations/hm-hero-desktop-non-retina.mp4";
+    private readonly string localFallbackImage = "hm-hero-desktop.png";
+}

@@ -1,0 +1,11 @@
+﻿@page "/autoplay-off"
+
+<PageTitle>Autoplay OFF</PageTitle>
+
+@* AUTOPLAY (OFF) + DEFAULT VALUES FOR ALL OTHER PARAMETERS *@
+<h3>Autoplay OFF</h3>
+<Nativo_Video src=@localVideoSource autoplay=false />
+
+@code {
+    private readonly string localVideoSource = "10-seconds-of-calm-music.mp4";
+}

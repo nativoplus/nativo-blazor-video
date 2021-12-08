@@ -1,0 +1,11 @@
+﻿@page "/sound-on"
+
+<PageTitle>Sound ON</PageTitle>
+
+@* SOUND (ON) + DEFAULT VALUES FOR ALL OTHER PARAMETERS *@
+<h3>Sound ON</h3>
+<Nativo_Video src=@localVideoSource muted=false />
+
+@code {
+    private readonly string localVideoSource = "10-seconds-of-calm-music.mp4";
+}

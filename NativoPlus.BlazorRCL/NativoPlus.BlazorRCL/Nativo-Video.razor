@@ -2,10 +2,18 @@
 @inject IJSRuntime JS
 
 <section class="video_container">
-    <video src="@(src ?? _videoPlaceHolder)" autoplay=@autoplay loop=@loop muted=@muted controls=@controls>
-        Your browser does not support the video tag.
-    </video>
-    <div class="overlay"></div>
+    @if (controls)
+    {
+        <video src="@(src ?? _videoPlaceHolder)" controls playsinline preload="none">
+            <img src="@(fallbackImage ?? _imagePlaceHolder)" title="Your browser does not support the <video> tag" />
+        </video>
+    }
+    else
+    {
+        <video src="@(src ?? _videoPlaceHolder)" autoplay=@autoplay loop=@loop muted=@muted playsinline preload="auto">
+            <img src="@(fallbackImage ?? _imagePlaceHolder)" title="Your browser does not support the <video> tag" />
+        </video>
+    }
 </section>
 
 @code {
@@ -25,7 +33,11 @@
     [Parameter]
     public bool controls { get; set; } = false;
 
-    private readonly string _videoPlaceHolder = "./_content/NativoPlus.BlazorRCL/hm-hero-desktop-non-retina.mp4";
+    [Parameter]
+    public string? fallbackImage { get; set; }
+
+    private readonly string _videoPlaceHolder = "./_content/NativoPlus.BlazorRCL/placeholder.mp4";
+    private readonly string _imagePlaceHolder = "./_content/NativoPlus.BlazorRCL/placeholder.png";
 
     private IJSObjectReference? _module;
 
