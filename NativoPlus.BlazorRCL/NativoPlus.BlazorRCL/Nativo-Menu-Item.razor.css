@@ -1,0 +1,27 @@
+﻿li.menu-item {
+    font-size: 1.65rem;
+    line-height: 1;
+    margin-top: 2.7rem;
+}
+
+li.menu-item:first-child {
+    margin-top: 0;
+}
+
+li.menu-item a {
+    color: #7e7e7e;
+    text-decoration: none;
+}
+
+li.menu-item a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Media queries (Mobile) */
+
+@media (min-height: 600px) {
+    li.menu-item {
+        font-size: 2rem;
+    }
+}

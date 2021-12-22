@@ -1,0 +1,13 @@
+﻿<li class="menu-item">
+    <a href=@Url>@Text</a>
+</li>
+
+@code {
+    [Parameter]
+    [EditorRequired]
+    public string? Text { get; set; }
+
+    [Parameter]
+    [EditorRequired]
+    public string? Url { get; set; }
+}
