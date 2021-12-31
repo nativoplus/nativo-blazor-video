@@ -1,23 +1,47 @@
-﻿<!--Hamburger menu button-->
+﻿@using static NativoPlus.BlazorRCL.AllEnumerations
 
-<button type="button" class="navbar-toggle hamburger-button">
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-    <span class="icon-bar"></span>
-</button>
-
-<!--Sidebar menu-->
-
-<div class="menu">
-    <span class="close-menu icon-cross2 right-boxed"></span>
-    <ul class="menu-list right-boxed">
+<div class="@(ToggleState ? "menu-is-opened" : "menu-is-closed") @MenuClass">
+    <span class="close-menu icon-cross2 right-boxed" @onclick=@(() => ToggleState = false)></span>
+    <ul class="menu-list">
         @ChildContent
     </ul>
 </div>
 
 @code {
     [Parameter]
+    public bool ToggleState { get; set; } = false;
+
+    [Parameter]
+    public MenuPosition? Position { get; set; }
+
+    [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    private string? MenuClass;
+
+    protected override void OnInitialized() => SetMenuClass();
+
+    private void SetMenuClass()
+    {
+        switch (Position)
+        {
+            case MenuPosition.Right:
+                MenuClass = "menu-right";
+                break;
+            case MenuPosition.Left:
+                MenuClass = "menu-left";
+                break;
+            case MenuPosition.Top:
+                MenuClass = "menu-top";
+                break;
+            case MenuPosition.Bottom:
+                MenuClass = "menu-bottom";
+                break;
+            default:
+                MenuClass = "menu-right";
+                break;
+        }
+    }
 }
 
 <link href="./_content/NativoPlus.BlazorRCL/css/linearicons.css" rel="stylesheet" />

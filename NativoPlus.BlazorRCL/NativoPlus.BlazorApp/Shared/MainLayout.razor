@@ -9,7 +9,11 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://www.nativoplus.com/" target="_blank">About Us</a>
+            <button type="button" class="hamburger-menu" @onclick="ToggleMenu">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
         </div>
 
         <article class="content px-4">
@@ -17,3 +21,21 @@
         </article>
     </main>
 </div>
+
+<Nativo_Menu ToggleState=@MenuState Position=AllEnumerations.MenuPosition.Left>
+    <Nativo_Menu_Item Text="Home" Url="#page1" />
+    <Nativo_Menu_Item Text="Specialization" Url="#page2" />
+    <Nativo_Menu_Item Text="Projects" Url="#page3" />
+    <Nativo_Menu_Item Text="Services" Url="#page4" />
+    <Nativo_Menu_Item Text="Reviews" Url="#page5" />
+    <Nativo_Menu_Item Text="Contact" Url="#page6" />
+</Nativo_Menu>
+
+@code {
+    private bool MenuState = false;
+
+    private void ToggleMenu()
+    {
+        MenuState = !MenuState;
+    }
+}
