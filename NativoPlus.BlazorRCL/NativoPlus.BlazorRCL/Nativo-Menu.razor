@@ -1,15 +1,29 @@
 ﻿@using static NativoPlus.BlazorRCL.AllEnumerations
 
-<div class="@(ToggleState ? "menu-is-opened" : "menu-is-closed") @MenuClass">
-    <span class="close-menu icon-cross2 right-boxed" @onclick=@(() => ToggleState = false)></span>
-    <ul class="menu-list">
+<div class="@(ToggleState ? "nativo-menu-is-open" : "nativo-menu-is-closed") nativo-click-capture" @onclick=@(() => SetToggleState(false))></div>
+
+<div class="@(ToggleState ? "is-open" : "is-closed") @MenuClass">
+    <span class="close-nativo-menu icon-cross2 nativo-right-pulled" @onclick=@(() => SetToggleState(false))></span>
+    <ul class="nativo-menu-list">
         @ChildContent
     </ul>
 </div>
 
 @code {
     [Parameter]
-    public bool ToggleState { get; set; } = false;
+    public bool ToggleState { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> ToggleStateChanged { get; set; }
+
+    private async Task SetToggleState(bool value)
+    {
+        if (ToggleState != value)
+        {
+            ToggleState = value;
+            await ToggleStateChanged.InvokeAsync(value);
+        }
+    }
 
     [Parameter]
     public MenuPosition? Position { get; set; }
@@ -26,19 +40,19 @@
         switch (Position)
         {
             case MenuPosition.Right:
-                MenuClass = "menu-right";
+                MenuClass = "nativo-menu-right";
                 break;
             case MenuPosition.Left:
-                MenuClass = "menu-left";
+                MenuClass = "nativo-menu-left";
                 break;
             case MenuPosition.Top:
-                MenuClass = "menu-top";
+                MenuClass = "nativo-menu-top";
                 break;
             case MenuPosition.Bottom:
-                MenuClass = "menu-bottom";
+                MenuClass = "nativo-menu-bottom";
                 break;
             default:
-                MenuClass = "menu-right";
+                MenuClass = "nativo-menu-right";
                 break;
         }
     }
