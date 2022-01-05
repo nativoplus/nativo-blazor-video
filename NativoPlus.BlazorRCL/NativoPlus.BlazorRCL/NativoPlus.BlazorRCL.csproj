@@ -13,8 +13,8 @@
     <PackageReadmeFile>nativo-blazor-rcl.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/nativoplus/nativo-blazor-video</RepositoryUrl>
     <PackageTags>nativo;video;blazor;razor</PackageTags>
-    <PackageReleaseNotes>Contains configurable and responsive menu component.</PackageReleaseNotes>
-    <Version>1.0.1</Version>
+    <PackageReleaseNotes>Styling and data binding fixes to menu component.</PackageReleaseNotes>
+    <Version>1.0.2</Version>
   </PropertyGroup>
 
 
