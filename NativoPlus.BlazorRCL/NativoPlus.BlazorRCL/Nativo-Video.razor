@@ -10,9 +10,13 @@
     }
     else
     {
-        <video src="@(src ?? _videoPlaceHolder)" autoplay=@autoplay loop=@loop muted=@muted playsinline preload="auto">
+        @*<video src="@(src ?? _videoPlaceHolder)" autoplay=@autoplay loop=@loop muted=@muted playsinline preload="auto">
             <img src="@(fallbackImage ?? _imagePlaceHolder)" title="Your browser does not support the <video> tag" />
-        </video>
+        </video>*@
+
+        <video-js autoplay=@autoplay loop=@loop muted=@muted playsinline preload="auto">
+            <source src="@(src ?? _videoPlaceHolder)" type="video/mp4">
+        </video-js>
     }
 </section>
 
