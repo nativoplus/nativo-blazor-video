@@ -1,0 +1,59 @@
+﻿@using static NativoPlus.BlazorRCL.AllEnumerations
+
+<div class="@(ToggleState ? "nativo-menu-is-open" : "nativo-menu-is-closed") nativo-click-capture" @onclick=@(() => SetToggleState(false))></div>
+
+<div class="@(ToggleState ? "is-open" : "is-closed") @MenuPositionClass @CssClass">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public bool ToggleState { get; set; }
+
+    [Parameter]
+    public EventCallback<bool> ToggleStateChanged { get; set; }
+
+    private async Task SetToggleState(bool value)
+    {
+        if (ToggleState != value)
+        {
+            ToggleState = value;
+            await ToggleStateChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public MenuPosition? Position { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string? CssClass { get; set; }
+
+    private string? MenuPositionClass;
+
+    protected override void OnInitialized() => SetMenuClass();
+
+    private void SetMenuClass()
+    {
+        switch (Position)
+        {
+            case MenuPosition.Right:
+                MenuPositionClass = "nativo-menu-right";
+                break;
+            case MenuPosition.Left:
+                MenuPositionClass = "nativo-menu-left";
+                break;
+            case MenuPosition.Top:
+                MenuPositionClass = "nativo-menu-top";
+                break;
+            case MenuPosition.Bottom:
+                MenuPositionClass = "nativo-menu-bottom";
+                break;
+            default:
+                MenuPositionClass = "nativo-menu-right";
+                break;
+        }
+    }
+}

@@ -86,3 +86,43 @@ a, .btn-link {
 .hamburger-menu .icon-bar + .icon-bar {
     margin-top: 4px;
 }
+
+/* Start of sidebar menu styles */
+
+.sidebar-menu {
+    background-color: #7ED150;
+}
+
+.sidebar-menu-list {
+    position: relative;
+    margin: 5rem 3rem;
+    height: 460px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-weight: 600;
+    letter-spacing: -0.025rem;
+    list-style: none;
+    padding: 20px 40px;
+}
+
+li.sidebar-menu-item {
+    font-size: 1.65rem;
+    line-height: 1;
+    margin-top: 2.7rem;
+}
+
+li.sidebar-menu-item:first-child {
+    margin-top: 0;
+}
+
+li.sidebar-menu-item a {
+    color: #17214C;
+    text-decoration: none;
+}
+
+li.sidebar-menu-item a:hover {
+    text-decoration: none;
+    font-size: 1.70rem;
+}
+
+/* End of sidebar menu styles */
