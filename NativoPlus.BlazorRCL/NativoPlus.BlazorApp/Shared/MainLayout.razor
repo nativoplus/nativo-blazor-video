@@ -22,14 +22,37 @@
     </main>
 </div>
 
-<Nativo_Menu @bind-ToggleState=@MenuState Position=AllEnumerations.MenuPosition.Right>
+@*<Nativo_Menu @bind-ToggleState=@MenuState Position=AllEnumerations.MenuPosition.Right>
     <Nativo_Menu_Item Text="Home" Url="#page1" />
     <Nativo_Menu_Item Text="Specialization" Url="#page2" />
     <Nativo_Menu_Item Text="Projects" Url="#page3" />
     <Nativo_Menu_Item Text="Services" Url="#page4" />
     <Nativo_Menu_Item Text="Reviews" Url="#page5" />
     <Nativo_Menu_Item Text="Contact" Url="#page6" />
-</Nativo_Menu>
+</Nativo_Menu>*@
+
+<Nativo_Menu_Template @bind-ToggleState=@MenuState Position=AllEnumerations.MenuPosition.Right CssClass="sidebar-menu">
+    <ul class="sidebar-menu-list">
+        <li class="sidebar-menu-item">
+            <a href=#page1>Home</a>
+        </li>
+        <li class="sidebar-menu-item">
+            <a href=#page2>Specialization</a>
+        </li>
+        <li class="sidebar-menu-item">
+            <a href=#page3>Projects</a>
+        </li>
+        <li class="sidebar-menu-item">
+            <a href=#page4>Services</a>
+        </li>
+        <li class="sidebar-menu-item">
+            <a href=#page5>Reviews</a>
+        </li>
+        <li class="sidebar-menu-item">
+            <a href=#page6>Contact</a>
+        </li>
+    </ul>
+</Nativo_Menu_Template>
 
 @code {
     private bool MenuState = false;

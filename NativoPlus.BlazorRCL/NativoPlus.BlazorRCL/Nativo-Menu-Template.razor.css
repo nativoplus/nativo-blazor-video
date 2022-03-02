@@ -1,0 +1,112 @@
+﻿/* Menu */
+
+.nativo-menu-top {
+    position: fixed;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    -o-transform: translateY(-100%);
+    transform: translateY(-100%);
+    -webkit-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}
+
+.nativo-menu-bottom {
+    position: fixed;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 100;
+    -webkit-transform: translateY(100%);
+    -ms-transform: translateY(100%);
+    -o-transform: translateY(100%);
+    transform: translateY(100%);
+    -webkit-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}
+
+.nativo-menu-right {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100;
+    -webkit-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -o-transform: translateX(100%);
+    transform: translateX(100%);
+    -webkit-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}
+
+.nativo-menu-left {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -o-transform: translateX(-100%);
+    transform: translateX(-100%);
+    -webkit-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}
+
+.nativo-menu-top.is-open, .nativo-menu-bottom.is-open {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+    box-shadow: 0 0 25px rgba(0,0,0,0.07);
+}
+
+.nativo-menu-left.is-open, .nativo-menu-right.is-open {
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -o-transform: translateX(0);
+    transform: translateX(0);
+    box-shadow: 0 0 25px rgba(0,0,0,0.07);
+}
+
+/* Transparent overlay */
+
+.nativo-click-capture {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+}
+
+.nativo-menu-is-open.nativo-click-capture {
+    visibility: visible;
+}
+
+.nativo-menu-is-closed.nativo-click-capture {
+    visibility: hidden;
+}
+
+/* Media queries (Mobile) */
+
+@media (min-width: 768px) {
+    .nativo-menu-right, .nativo-menu-left {
+        width: 50%;
+    }
+}
+
+@media (min-width: 992px) {
+    .nativo-menu-right, .nativo-menu-left {
+        width: 35%;
+    }
+}
