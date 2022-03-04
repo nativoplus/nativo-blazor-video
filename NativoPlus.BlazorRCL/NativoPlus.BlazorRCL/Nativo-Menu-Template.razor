@@ -1,6 +1,9 @@
 ﻿@using static NativoPlus.BlazorRCL.AllEnumerations
 
-<div class="@(ToggleState ? "nativo-menu-is-open" : "nativo-menu-is-closed") nativo-click-capture" @onclick=@(() => SetToggleState(false))></div>
+@if (EnableOverlay == true)
+{
+    <div class="@(ToggleState ? "nativo-menu-is-open" : "nativo-menu-is-closed") nativo-click-capture" @onclick=@(() => SetToggleState(false))></div>
+}
 
 <div class="@(ToggleState ? "is-open" : "is-closed") @MenuPositionClass @CssClass">
     @ChildContent
@@ -30,6 +33,9 @@
 
     [Parameter]
     public string? CssClass { get; set; }
+
+    [Parameter]
+    public bool? EnableOverlay { get; set; } = true;
 
     private string? MenuPositionClass;
 
