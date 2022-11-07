@@ -1,10 +1,9 @@
-﻿@page "/loop-off"
+﻿@page "/loop-on"
 
-<PageTitle>Loop OFF</PageTitle>
+<PageTitle>Loop ON</PageTitle>
 
-@* LOOP (OFF) + DEFAULT VALUES FOR ALL OTHER PARAMETERS *@
-<h3>Loop OFF</h3>
-<Nativo_Video src=@localVideoSource loop=false />
+<h3>Loop ON</h3>
+<Nativo_Video src=@localVideoSource autoplay=true loop=true />
 
 @code {
     private readonly string localVideoSource = "10-seconds-of-calm-music.mp4";

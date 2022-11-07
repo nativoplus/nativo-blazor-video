@@ -1,5 +1,5 @@
 ﻿@implements IAsyncDisposable
-@inject IJSRuntime JS
+@inject IJSRuntime _jsRuntime
 
 <section class="video_container">
     @if (controls)
@@ -10,7 +10,7 @@
     }
     else
     {
-        <video src="@(src ?? _videoPlaceHolder)" autoplay=@autoplay loop=@loop muted=@muted playsinline preload="auto">
+        <video id="@_uniqueVideoPlayerId" src="@(src ?? _videoPlaceHolder)" autoplay=@autoplay loop=@loop playsinline>
             <img src="@(fallbackImage ?? _imagePlaceHolder)" title="Your browser does not support the <video> tag" />
         </video>
     }
@@ -22,13 +22,13 @@
     public string? src { get; set; }
 
     [Parameter]
-    public bool autoplay { get; set; } = true;
+    public bool autoplay { get; set; } = false;
 
     [Parameter]
-    public bool loop { get; set; } = true;
+    public bool loop { get; set; } = false;
 
     [Parameter]
-    public bool muted { get; set; } = true;
+    public bool muted { get; set; } = false;
 
     [Parameter]
     public bool controls { get; set; } = false;
@@ -36,6 +36,7 @@
     [Parameter]
     public string? fallbackImage { get; set; }
 
+    private readonly string _uniqueVideoPlayerId = Guid.NewGuid().ToString();
     private readonly string _videoPlaceHolder = "./_content/NativoPlus.BlazorRCL/placeholder.mp4";
     private readonly string _imagePlaceHolder = "./_content/NativoPlus.BlazorRCL/placeholder.png";
 
@@ -45,8 +46,11 @@
     {
         if (firstRender)
         {
-            _module = await JS.InvokeAsync<IJSObjectReference>("import", 
+            _module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import",
                 "./_content/NativoPlus.BlazorRCL/Nativo-Video.razor.js");
+
+            if (muted || autoplay)
+                await _jsRuntime.InvokeVoidAsync("helperFunctions.muteVideo", _uniqueVideoPlayerId);
         }
     }
 
