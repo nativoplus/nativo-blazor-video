@@ -7,5 +7,14 @@ window.helperFunctions = {
             videoElement.muted = "muted";
             console.log(videoElement + " was muted");
         }
+    },
+
+    playVideo: function (videoElementId) {
+        var videoElement = document.getElementById(videoElementId);
+
+        if (videoElement.paused) {
+            videoElement.play();
+            console.log(videoElement + " started playing");
+        }
     }
 }
