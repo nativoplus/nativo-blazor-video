@@ -2,13 +2,14 @@
 
 <PageTitle>Multiple Sources</PageTitle>
 
-<h3>HTTP video with fallback image</h3>
-<Nativo_Video src=@httpVideoSource autoplay=true fallbackImage=@localFallbackImage />
-
-<br />
 
 <h3>Local video</h3>
 <Nativo_Video src=@localVideoSource autoplay=true />
+
+<br />
+
+<h3>HTTP video with fallback image</h3>
+<Nativo_Video src=@httpVideoSource autoplay=true fallbackImage=@localFallbackImage />
 
 @code {
     private readonly string httpVideoSource = "https://www.hellomonday.com/assets/video/animations/hm-hero-desktop-non-retina.mp4";

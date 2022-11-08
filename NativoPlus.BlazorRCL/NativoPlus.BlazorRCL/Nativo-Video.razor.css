@@ -18,3 +18,29 @@
     object-fit: cover;
     object-position: center;
 }
+
+    .video_container .no-controls-video, .video_container img {
+        z-index: -1;
+    }
+
+.mute_button_container {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+    width: 50px;
+    color: #fff;
+    margin: 25px;
+    text-align: center;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 100%;
+}
+
+    .mute_button_container:hover {
+        cursor: pointer;
+        background-color: rgba(0,0,0,0.6);
+    }
+
+.mute_button_container span {
+    line-height: 50px;
+}

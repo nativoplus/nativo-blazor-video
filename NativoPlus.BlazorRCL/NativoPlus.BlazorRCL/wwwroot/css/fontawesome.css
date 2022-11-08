@@ -1,0 +1,25 @@
+﻿:root, :host {
+    --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Pro";
+}
+
+@font-face {
+    font-family: 'Font Awesome 6 Pro';
+    font-style: normal;
+    font-weight: 900;
+    font-display: block;
+    src: url("../fonts/fa-solid-900.ttf") format("truetype");
+}
+
+.fas,
+.fa-solid {
+    font-family: 'Font Awesome 6 Pro';
+    font-weight: 900;
+}
+
+.fa-volume::before {
+    content: "\f6a8";
+}
+
+.fa-volume-slash::before {
+    content: "\f2e2";
+}

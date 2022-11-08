@@ -4,16 +4,22 @@
 <section class="video_container">
     @if (controls)
     {
-        <video src="@(src ?? _videoPlaceHolder)" controls playsinline preload="none">
+        <video id="@_uniqueVideoPlayerId" src="@(src ?? _videoPlaceHolder)" playsinline controls muted=@muted autoplay=@autoplay preload="none">
             <img src="@(fallbackImage ?? _imagePlaceHolder)" title="Your browser does not support the <video> tag" />
         </video>
     }
     else
     {
-        <video id="@_uniqueVideoPlayerId" src="@(src ?? _videoPlaceHolder)" playsinline loop=@loop muted=@(muted || autoplay) autoplay=@autoplay>
+        <video id="@_uniqueVideoPlayerId" src="@(src ?? _videoPlaceHolder)" class="no-controls-video" playsinline loop=@loop muted=@muted autoplay=@autoplay>
             <img src="@(fallbackImage ?? _imagePlaceHolder)" title="Your browser does not support the <video> tag" />
         </video>
+
+        <div class="mute_button_container" @onclick=@(() => ToggleMute())>
+            <span class="fa-solid @(muted ? "fa-volume-slash" : "fa-volume")"></span>
+        </div>
     }
+
+    @ChildContent
 </section>
 
 @code {
@@ -36,11 +42,20 @@
     [Parameter]
     public string? fallbackImage { get; set; }
 
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
     private readonly string _uniqueVideoPlayerId = Guid.NewGuid().ToString();
     private readonly string _videoPlaceHolder = "./_content/NativoPlus.BlazorRCL/placeholder.mp4";
     private readonly string _imagePlaceHolder = "./_content/NativoPlus.BlazorRCL/placeholder.png";
 
     private IJSObjectReference? _module;
+
+    protected override void OnInitialized()
+    {
+        muted = (muted || autoplay);
+        base.OnInitialized();
+    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -49,12 +64,23 @@
             _module = await _jsRuntime.InvokeAsync<IJSObjectReference>("import",
                 "./_content/NativoPlus.BlazorRCL/Nativo-Video.razor.js");
 
-            if (muted || autoplay)
+            if (muted)
                 await _jsRuntime.InvokeVoidAsync("helperFunctions.muteVideo", _uniqueVideoPlayerId);
 
             if (autoplay)
                 await _jsRuntime.InvokeVoidAsync("helperFunctions.playVideo", _uniqueVideoPlayerId);
         }
+    }
+
+    public async void ToggleMute()
+    {
+        if (muted)
+            await _jsRuntime.InvokeVoidAsync("helperFunctions.unmuteVideo", _uniqueVideoPlayerId);
+        else
+            await _jsRuntime.InvokeVoidAsync("helperFunctions.muteVideo", _uniqueVideoPlayerId);
+
+        muted = !muted;
+        this.StateHasChanged();
     }
 
     public async ValueTask DisposeAsync()
@@ -65,3 +91,5 @@
         }
     }
 }
+
+<link href="./_content/NativoPlus.BlazorRCL/css/fontawesome.css" rel="stylesheet" />
