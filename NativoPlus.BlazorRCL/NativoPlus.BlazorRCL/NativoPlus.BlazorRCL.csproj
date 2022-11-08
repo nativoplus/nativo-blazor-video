@@ -13,8 +13,8 @@
     <PackageReadmeFile>nativo-blazor-rcl.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/nativoplus/nativo-blazor-video</RepositoryUrl>
     <PackageTags>nativo;video;blazor;razor</PackageTags>
-    <PackageReleaseNotes>Added optional overlay parameter to menu template component.</PackageReleaseNotes>
-    <Version>1.0.5</Version>
+    <PackageReleaseNotes>Added mute button for video without controls. Fixed mute and autoplay parameters. ChildContent can now be added.</PackageReleaseNotes>
+    <Version>1.0.6</Version>
   </PropertyGroup>
 
 
