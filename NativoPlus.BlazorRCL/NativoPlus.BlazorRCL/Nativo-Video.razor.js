@@ -1,5 +1,4 @@
-﻿// Add all JavaScript code for the Nativo-Video component here
-window.helperFunctions = {
+﻿window.helperFunctions = {
     muteVideo: function (videoElementId) {
         var videoElement = document.getElementById(videoElementId);
 

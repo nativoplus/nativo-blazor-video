@@ -23,3 +23,7 @@
 .fa-volume-slash::before {
     content: "\f2e2";
 }
+
+.fa-circle-play::before {
+    content: "\f144";
+}
