@@ -14,9 +14,19 @@
             <img src="@(fallbackImage ?? _imagePlaceHolder)" title="Your browser does not support the <video> tag" />
         </video>
 
-        <div class="mute_button_container" @onclick=@(() => ToggleMute())>
-            <span class="fa-solid @(muted ? "fa-volume-slash" : "fa-volume")"></span>
-        </div>
+        if (showCustomPlayButton)
+        {
+            <div class="play_button_container" @onclick=@(() => PlayVideo())>
+                <span class="fa-solid fa-circle-play"></span>
+            </div>
+        }
+
+        if (showCustomMuteButton)
+        {
+            <div class="mute_button_container" @onclick=@(() => ToggleMute())>
+                <span class="fa-solid @(muted ? "fa-volume-slash" : "fa-volume")"></span>
+            </div>
+        }
     }
 
     @ChildContent
@@ -45,6 +55,12 @@
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
+    [Parameter]
+    public bool showCustomPlayButton { get; set; } = false;
+
+    [Parameter]
+    public bool showCustomMuteButton { get; set; } = true;
+
     private readonly string _uniqueVideoPlayerId = Guid.NewGuid().ToString();
     private readonly string _videoPlaceHolder = "./_content/NativoPlus.BlazorRCL/placeholder.mp4";
     private readonly string _imagePlaceHolder = "./_content/NativoPlus.BlazorRCL/placeholder.png";
@@ -72,7 +88,15 @@
         }
     }
 
-    public async void ToggleMute()
+    public void PlayVideo()
+    {
+        muted = false;
+        autoplay = true;
+        controls = true;
+        this.StateHasChanged();
+    }
+
+    public async Task ToggleMute()
     {
         if (muted)
             await _jsRuntime.InvokeVoidAsync("helperFunctions.unmuteVideo", _uniqueVideoPlayerId);
